@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Star, Eye, ShoppingCart } from "lucide-react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 interface ProductCardProps {
   product: Product;
@@ -22,6 +23,13 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
 
     if (existingItem) {
       existingItem.quantity += 1;
+      toast.success("Updated cart", {
+        description: `${product.name} quantity increased to ${existingItem.quantity}`,
+        action: {
+          label: "View Cart",
+          onClick: () => router.push("/cart"),
+        },
+      });
     } else {
       cartItems.push({
         productId: product.id,
@@ -31,11 +39,17 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
         category: product.category,
         quantity: 1,
       });
+      toast.success("Added to cart", {
+        description: `${product.name} has been added to your cart`,
+        action: {
+          label: "View Cart",
+          onClick: () => router.push("/cart"),
+        },
+      });
     }
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     window.dispatchEvent(new Event("storage"));
-    router.push("/cart");
   };
 
   return (

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight, Star, ShoppingCart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import { toast } from "sonner";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -51,6 +52,13 @@ export default function ProductDetailPage() {
 
     if (existingItem) {
       existingItem.quantity += 1;
+      toast.success("Updated cart", {
+        description: `${product.name} quantity increased to ${existingItem.quantity}`,
+        action: {
+          label: "View Cart",
+          onClick: () => router.push("/cart"),
+        },
+      });
     } else {
       cartItems.push({
         productId: product.id,
@@ -60,11 +68,17 @@ export default function ProductDetailPage() {
         category: product.category.name,
         quantity: 1,
       });
+      toast.success("Added to cart", {
+        description: `${product.name} has been added to your cart`,
+        action: {
+          label: "View Cart",
+          onClick: () => router.push("/cart"),
+        },
+      });
     }
 
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     window.dispatchEvent(new Event("storage"));
-    router.push("/cart");
   };
 
   if (loading) {
