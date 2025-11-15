@@ -14,6 +14,7 @@ A full-stack Next.js 15 e-commerce platform with quote request system, admin das
   - Special notes for each product
 - **WhatsApp Integration** for direct customer communication
 - **Newsletter Subscription** with automated welcome emails
+- **Contact Form** with automated email notifications to admin and customer
 - **Responsive Design** with mobile-first approach
 
 ### Admin Features
@@ -72,6 +73,7 @@ NEXT_PUBLIC_WHATSAPP_NUMBER="1234567890"
 # Email (Resend)
 RESEND_API_KEY="your_resend_api_key"
 EMAIL_FROM="Curtains & Co <noreply@yourdomain.com>"
+ADMIN_EMAIL="admin@yourdomain.com"
 
 # App URL
 NEXT_PUBLIC_APP_URL="http://localhost:3000"
@@ -158,6 +160,13 @@ Visit [http://localhost:3000](http://localhost:3000)
 - `DELETE /api/newsletter?email=user@example.com` - Unsubscribe user
 - Welcome emails are sent automatically upon subscription
 
+### Contact Form Management
+- Contact submissions stored in database with status tracking
+- `GET /api/contact` - View all contact submissions
+- Admin receives email notification for each submission
+- Customer receives confirmation email automatically
+- Contact page: `/contact`
+
 ## Customer Flow
 
 1. Browse products on homepage or products page
@@ -221,6 +230,8 @@ Visit [http://localhost:3000](http://localhost:3000)
 - `POST /api/newsletter` - Subscribe to newsletter
 - `DELETE /api/newsletter?email=user@example.com` - Unsubscribe from newsletter
 - `GET /api/newsletter` - Get all subscribers (should be protected in production)
+- `POST /api/contact` - Submit contact form
+- `GET /api/contact` - Get all contact submissions (should be protected in production)
 
 ### Protected Routes (Admin Only)
 - `POST /api/products` - Create product
