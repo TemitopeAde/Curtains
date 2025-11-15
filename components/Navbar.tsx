@@ -1,0 +1,71 @@
+"use client";
+
+import Link from "next/link";
+import { ShoppingCart, Menu } from "lucide-react";
+import { useState } from "react";
+
+export default function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <nav className="bg-white shadow-sm sticky top-0 z-40">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          <Link href="/" className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-gray-900">
+            LuxeHome
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors">
+              Home
+            </Link>
+            <Link href="/products" className="text-gray-700 hover:text-gray-900 transition-colors">
+              Products
+            </Link>
+            <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
+              About
+            </Link>
+            <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
+              Contact
+            </Link>
+            <button className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
+              <ShoppingCart className="w-6 h-6" />
+              <span className="absolute -top-1 -right-1 bg-gray-900 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                0
+              </span>
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden pb-4">
+            <div className="flex flex-col space-y-3">
+              <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
+                Home
+              </Link>
+              <Link href="/products" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
+                Products
+              </Link>
+              <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
+                About
+              </Link>
+              <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
+                Contact
+              </Link>
+            </div>
+          </div>
+        )}
+      </div>
+    </nav>
+  );
+}
