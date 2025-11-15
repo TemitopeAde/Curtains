@@ -14,6 +14,7 @@ export default function ProductForm({ categories, onSuccess }: ProductFormProps)
     name: "",
     description: "",
     price: "",
+    promoPrice: "",
     categoryId: "",
     featured: false,
   });
@@ -79,6 +80,7 @@ export default function ProductForm({ categories, onSuccess }: ProductFormProps)
         name: "",
         description: "",
         price: "",
+        promoPrice: "",
         categoryId: "",
         featured: false,
       });
@@ -126,7 +128,7 @@ export default function ProductForm({ categories, onSuccess }: ProductFormProps)
         />
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Price ($)
@@ -138,6 +140,21 @@ export default function ProductForm({ categories, onSuccess }: ProductFormProps)
             onChange={(e) => setFormData({ ...formData, price: e.target.value })}
             required
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Promo Price ($)
+            <span className="text-xs text-gray-500 ml-1">(Optional)</span>
+          </label>
+          <input
+            type="number"
+            step="0.01"
+            value={formData.promoPrice}
+            onChange={(e) => setFormData({ ...formData, promoPrice: e.target.value })}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-900"
+            placeholder="Leave empty for no promo"
           />
         </div>
 

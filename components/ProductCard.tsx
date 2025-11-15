@@ -15,6 +15,8 @@ interface ProductCardProps {
 
 export default function ProductCard({ product, onQuickView }: ProductCardProps) {
   const router = useRouter();
+  const currentPrice = product.promoPrice || product.price;
+  const hasPromo = product.promoPrice && product.promoPrice < product.price;
 
   const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
       cartItems.push({
         productId: product.id,
         name: product.name,
-        price: product.price,
+        price: currentPrice,
         image: product.images[0],
         category: product.category,
         quantity: 1,
@@ -78,11 +80,18 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
               <Eye className="w-5 h-5 text-gray-700" />
             </button>
           )}
-          {product.featured && (
-            <div className="absolute top-4 left-4 bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-              Featured
-            </div>
-          )}
+          <div className="absolute top-4 left-4 flex flex-col gap-2">
+            {product.featured && (
+              <div className="bg-amber-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                Featured
+              </div>
+            )}
+            {hasPromo && (
+              <div className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                SALE
+              </div>
+            )}
+          </div>
         </div>
         <div className="p-4">
           <p className="text-sm text-gray-500 mb-1">{product.category}</p>
@@ -112,9 +121,22 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
             )}
           </div>
           <div className="flex items-center justify-between">
-            <p className="font-[family-name:var(--font-montserrat)] text-2xl font-bold text-gray-900">
-              ${product.price.toFixed(2)}
-            </p>
+            <div className="flex flex-col">
+              {hasPromo ? (
+                <>
+                  <p className="font-[family-name:var(--font-montserrat)] text-2xl font-bold text-red-600">
+                    ${currentPrice.toFixed(2)}
+                  </p>
+                  <p className="text-sm text-gray-500 line-through">
+                    ${product.price.toFixed(2)}
+                  </p>
+                </>
+              ) : (
+                <p className="font-[family-name:var(--font-montserrat)] text-2xl font-bold text-gray-900">
+                  ${currentPrice.toFixed(2)}
+                </p>
+              )}
+            </div>
             <button
               onClick={addToCart}
               className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm font-medium flex items-center gap-1"

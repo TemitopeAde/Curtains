@@ -6,7 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "JD Beddings & Interiors | Premium Home Comfort",
-  description: "Transform your home with JD Beddings & Interiors. Specializing in premium bedding, luxury curtains, bath essentials, and interior décor that bring comfort, elegance, and peace to your space.",
+  description: "JD Beddings & Interiors - Creating soft, beautiful, and timeless spaces. Premium bedding, luxury curtains, bath essentials, and interior décor in Nigeria.",
 };
 
 export default function RootLayout({

@@ -32,6 +32,7 @@ model Product {
   slug        String   @unique
   description String   @db.Text
   price       Float
+  promoPrice  Float?   // Optional promotional price
   images      String[] // Array of Cloudinary URLs
   featured    Boolean  @default(false)
   category    Category @relation(fields: [categoryId], references: [id])

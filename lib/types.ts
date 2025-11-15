@@ -4,6 +4,7 @@ export interface Product {
   slug: string;
   category: string;
   price: number;
+  promoPrice?: number;
   description: string;
   images: string[];
   featured?: boolean;
