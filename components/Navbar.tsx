@@ -1,11 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart, Menu } from "lucide-react";
-import { useState } from "react";
+import { FileText, Menu } from "lucide-react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [quoteCount, setQuoteCount] = useState(0);
+
+  useEffect(() => {
+    const updateQuoteCount = () => {
+      const items = JSON.parse(localStorage.getItem("quoteItems") || "[]");
+      setQuoteCount(items.length);
+    };
+
+    updateQuoteCount();
+    window.addEventListener("storage", updateQuoteCount);
+
+    return () => window.removeEventListener("storage", updateQuoteCount);
+  }, []);
 
   return (
     <nav className="bg-white shadow-sm sticky top-0 z-40">
@@ -29,12 +42,14 @@ export default function Navbar() {
             <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
               Contact
             </Link>
-            <button className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
-              <ShoppingCart className="w-6 h-6" />
-              <span className="absolute -top-1 -right-1 bg-gray-900 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                0
-              </span>
-            </button>
+            <Link href="/quote" className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
+              <FileText className="w-6 h-6" />
+              {quoteCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-gray-900 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {quoteCount}
+                </span>
+              )}
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -55,6 +70,9 @@ export default function Navbar() {
               </Link>
               <Link href="/products" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 Products
+              </Link>
+              <Link href="/quote" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
+                Quote Request {quoteCount > 0 && `(${quoteCount})`}
               </Link>
               <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 About

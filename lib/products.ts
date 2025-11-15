@@ -5,6 +5,7 @@ export const products: Product[] = [
   {
     id: "1",
     name: "Luxury Cotton Bedspread Set",
+    slug: "luxury-cotton-bedspread-set",
     category: "Bedspread Sets",
     price: 149.99,
     description: "Premium cotton bedspread set with intricate embroidery. Includes 1 bedspread and 2 pillow shams. Perfect for adding elegance to your bedroom.",
@@ -20,6 +21,7 @@ export const products: Product[] = [
   {
     id: "2",
     name: "Quilted Bedspread Set - King",
+    slug: "quilted-bedspread-set-king",
     category: "Bedspread Sets",
     price: 189.99,
     description: "King-sized quilted bedspread with modern geometric patterns. Machine washable and fade-resistant.",
@@ -33,6 +35,7 @@ export const products: Product[] = [
   {
     id: "3",
     name: "Premium Duvet Set - White",
+    slug: "premium-duvet-set-white",
     category: "Duvet Sets",
     price: 129.99,
     description: "Soft and breathable duvet set made from 100% Egyptian cotton. Includes duvet cover and matching pillowcases.",
@@ -48,6 +51,7 @@ export const products: Product[] = [
   {
     id: "4",
     name: "Floral Duvet Set",
+    slug: "floral-duvet-set",
     category: "Duvet Sets",
     price: 159.99,
     description: "Beautiful floral pattern duvet set that brings a touch of nature to your bedroom. Hypoallergenic material.",
@@ -62,6 +66,7 @@ export const products: Product[] = [
   {
     id: "5",
     name: "Fleece Throw Blanket",
+    slug: "fleece-throw-blanket",
     category: "Blankets",
     price: 39.99,
     description: "Ultra-soft fleece blanket perfect for cozy nights. Available in multiple colors and patterns.",
@@ -76,6 +81,7 @@ export const products: Product[] = [
   {
     id: "6",
     name: "Weighted Comfort Blanket",
+    slug: "weighted-comfort-blanket",
     category: "Blankets",
     price: 89.99,
     description: "15lb weighted blanket designed to promote better sleep. Removable, washable cover included.",
@@ -90,6 +96,7 @@ export const products: Product[] = [
   {
     id: "7",
     name: "Memory Foam Fibre Pillows (Set of 2)",
+    slug: "memory-foam-fibre-pillows-set-of-2",
     category: "Fibre Pillows",
     price: 49.99,
     description: "Ergonomic memory foam pillows that provide excellent neck and head support. Breathable cover.",
@@ -103,6 +110,7 @@ export const products: Product[] = [
   {
     id: "8",
     name: "Hotel Collection Fibre Pillows",
+    slug: "hotel-collection-fibre-pillows",
     category: "Fibre Pillows",
     price: 69.99,
     description: "Luxury hotel-quality pillows with premium hollow fibre filling. Set of 4 pillows.",
@@ -116,6 +124,7 @@ export const products: Product[] = [
   {
     id: "9",
     name: "Velvet Throw Pillow - Gold",
+    slug: "velvet-throw-pillow-gold",
     category: "Throw Pillows",
     price: 24.99,
     description: "Elegant velvet throw pillow with hidden zipper. Perfect accent for sofas and beds.",
@@ -130,6 +139,7 @@ export const products: Product[] = [
   {
     id: "10",
     name: "Decorative Throw Pillows (Set of 4)",
+    slug: "decorative-throw-pillows-set-of-4",
     category: "Throw Pillows",
     price: 79.99,
     description: "Mix and match decorative pillows with various patterns and textures. Includes 4 coordinated designs.",
@@ -144,6 +154,7 @@ export const products: Product[] = [
   {
     id: "11",
     name: "Artificial Orchid Arrangement",
+    slug: "artificial-orchid-arrangement",
     category: "Interior Flowers",
     price: 45.99,
     description: "Realistic artificial orchid in ceramic pot. Maintenance-free and perfect for any room.",
@@ -157,6 +168,7 @@ export const products: Product[] = [
   {
     id: "12",
     name: "Eucalyptus Greenery Bundle",
+    slug: "eucalyptus-greenery-bundle",
     category: "Interior Flowers",
     price: 34.99,
     description: "Dried eucalyptus stems in a modern glass vase. Adds a natural touch to your decor.",
@@ -170,6 +182,7 @@ export const products: Product[] = [
   {
     id: "13",
     name: "Modern Wall Art Set",
+    slug: "modern-wall-art-set",
     category: "Interior Decor",
     price: 129.99,
     description: "Set of 3 framed abstract art prints. Contemporary design perfect for living rooms and offices.",
@@ -184,6 +197,7 @@ export const products: Product[] = [
   {
     id: "14",
     name: "Decorative Mirror - Gold Frame",
+    slug: "decorative-mirror-gold-frame",
     category: "Interior Decor",
     price: 89.99,
     description: "Round decorative mirror with elegant gold frame. Perfect statement piece for any room.",
@@ -198,6 +212,7 @@ export const products: Product[] = [
   {
     id: "15",
     name: "Blackout Window Blinds",
+    slug: "blackout-window-blinds",
     category: "Window Blinds",
     price: 79.99,
     description: "Premium blackout roller blinds. Easy to install and operate. Custom sizes available.",
@@ -211,6 +226,7 @@ export const products: Product[] = [
   {
     id: "16",
     name: "Bamboo Roman Shades",
+    slug: "bamboo-roman-shades",
     category: "Window Blinds",
     price: 119.99,
     description: "Natural bamboo roman shades for an eco-friendly, elegant look. Light filtering.",
@@ -224,6 +240,7 @@ export const products: Product[] = [
   {
     id: "17",
     name: "Sheer Linen Curtains",
+    slug: "sheer-linen-curtains",
     category: "Curtains",
     price: 69.99,
     description: "Elegant sheer linen curtains that allow natural light while providing privacy. Set of 2 panels.",
@@ -239,6 +256,7 @@ export const products: Product[] = [
   {
     id: "18",
     name: "Velvet Blackout Curtains",
+    slug: "velvet-blackout-curtains",
     category: "Curtains",
     price: 99.99,
     description: "Luxurious velvet curtains with blackout lining. Thermal insulated to keep rooms comfortable year-round.",
@@ -253,6 +271,7 @@ export const products: Product[] = [
   {
     id: "19",
     name: "Egyptian Cotton Towel Set",
+    slug: "egyptian-cotton-towel-set",
     category: "Cotton Towels",
     price: 59.99,
     description: "6-piece premium Egyptian cotton towel set. Includes 2 bath towels, 2 hand towels, and 2 washcloths.",
@@ -266,6 +285,7 @@ export const products: Product[] = [
   {
     id: "20",
     name: "Luxury Bath Towels - White",
+    slug: "luxury-bath-towels-white",
     category: "Cotton Towels",
     price: 79.99,
     description: "Hotel-quality 100% organic cotton bath towels. Super absorbent and quick-drying. Set of 4.",
@@ -280,6 +300,7 @@ export const products: Product[] = [
   {
     id: "21",
     name: "Plush Spa Bathrobe",
+    slug: "plush-spa-bathrobe",
     category: "Bathrobes",
     price: 89.99,
     description: "Ultra-soft terry cloth bathrobe with shawl collar. Available in multiple sizes and colors.",
@@ -293,6 +314,7 @@ export const products: Product[] = [
   {
     id: "22",
     name: "Lightweight Waffle Bathrobe",
+    slug: "lightweight-waffle-bathrobe",
     category: "Bathrobes",
     price: 64.99,
     description: "Breathable waffle-weave bathrobe perfect for all seasons. Includes matching belt.",
@@ -306,6 +328,7 @@ export const products: Product[] = [
   {
     id: "23",
     name: "Memory Foam Bath Mat",
+    slug: "memory-foam-bath-mat",
     category: "Footmats",
     price: 29.99,
     description: "Ultra-absorbent memory foam bath mat with non-slip backing. Quick-dry technology.",
@@ -319,6 +342,7 @@ export const products: Product[] = [
   {
     id: "24",
     name: "Cotton Bath Mat Set (3-Piece)",
+    slug: "cotton-bath-mat-set-3-piece",
     category: "Footmats",
     price: 44.99,
     description: "Coordinated 3-piece cotton bath mat set. Machine washable and highly absorbent.",
