@@ -8,6 +8,7 @@ import ProductCard from "@/components/ProductCard";
 import QuickViewModal from "@/components/QuickViewModal";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import RotatingText from "@/components/animations/RotatingText";
+import NewsletterForm from "@/components/NewsletterForm";
 import { products } from "@/lib/products";
 import { Product } from "@/lib/types";
 
@@ -192,16 +193,7 @@ export default function Home() {
               <p className="text-gray-300 mb-8">
                 Subscribe to our newsletter for exclusive offers and interior design tips
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="flex-1 px-6 py-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-white"
-                />
-                <button className="px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors font-[family-name:var(--font-montserrat)] font-semibold">
-                  Subscribe
-                </button>
-              </div>
+              <NewsletterForm />
             </div>
           </ScrollReveal>
         </div>
