@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ShoppingCart, Menu } from "lucide-react";
+import { ShoppingCart, Menu, FileText } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
@@ -29,12 +29,16 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6">
             <Link href="/" className="text-gray-700 hover:text-gray-900 transition-colors">
               Home
             </Link>
             <Link href="/products" className="text-gray-700 hover:text-gray-900 transition-colors">
               Products
+            </Link>
+            <Link href="/request-quote" className="inline-flex items-center gap-1.5 bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition-colors font-medium">
+              <FileText className="w-4 h-4" />
+              Request Quote
             </Link>
             <Link href="/about" className="text-gray-700 hover:text-gray-900 transition-colors">
               About
@@ -70,6 +74,10 @@ export default function Navbar() {
               </Link>
               <Link href="/products" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 Products
+              </Link>
+              <Link href="/request-quote" className="inline-flex items-center gap-2 bg-amber-500 text-white px-4 py-2 rounded-lg hover:bg-amber-600 transition-colors font-medium">
+                <FileText className="w-4 h-4" />
+                Request Quote
               </Link>
               <Link href="/cart" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 Cart {cartCount > 0 && `(${cartCount})`}
