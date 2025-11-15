@@ -13,6 +13,7 @@ A full-stack Next.js 15 e-commerce platform with quote request system, admin das
   - Bedding-specific fields (bed size, design, set type)
   - Special notes for each product
 - **WhatsApp Integration** for direct customer communication
+- **Newsletter Subscription** with automated welcome emails
 - **Responsive Design** with mobile-first approach
 
 ### Admin Features
@@ -27,6 +28,7 @@ A full-stack Next.js 15 e-commerce platform with quote request system, admin das
 - **Database**: PostgreSQL with Prisma ORM
 - **Authentication**: NextAuth.js v5
 - **Image Upload**: Cloudinary
+- **Email Service**: Resend
 - **Styling**: Tailwind CSS
 - **Animations**: Framer Motion
 - **Icons**: Lucide React
@@ -39,6 +41,7 @@ A full-stack Next.js 15 e-commerce platform with quote request system, admin das
 - Node.js 18+ installed
 - PostgreSQL database (local or hosted)
 - Cloudinary account ([sign up for free](https://cloudinary.com))
+- Resend account for email ([sign up for free](https://resend.com))
 
 ### 2. Install Dependencies
 
@@ -65,12 +68,27 @@ NEXTAUTH_URL="http://localhost:3000"
 
 # WhatsApp (include country code without +)
 NEXT_PUBLIC_WHATSAPP_NUMBER="1234567890"
+
+# Email (Resend)
+RESEND_API_KEY="your_resend_api_key"
+EMAIL_FROM="Curtains & Co <noreply@yourdomain.com>"
+
+# App URL
+NEXT_PUBLIC_APP_URL="http://localhost:3000"
 \`\`\`
 
 #### Getting Cloudinary Credentials:
 1. Sign up at [cloudinary.com](https://cloudinary.com)
 2. Go to Dashboard
 3. Copy Cloud Name, API Key, and API Secret
+
+#### Getting Resend API Key:
+1. Sign up at [resend.com](https://resend.com)
+2. Go to API Keys in dashboard
+3. Create new API key
+4. Copy the API key
+5. **For production**: Add and verify your domain in Resend dashboard
+6. **For development**: Use the default `onboarding@resend.dev` sender (limited to your own email)
 
 ### 4. Database Setup
 
@@ -134,6 +152,12 @@ Visit [http://localhost:3000](http://localhost:3000)
 - `/admin/products` - Product management
 - `/admin/quotes` - View customer quote requests
 
+### Newsletter Management
+- Subscribers are stored in database
+- `GET /api/newsletter` - View all active subscribers
+- `DELETE /api/newsletter?email=user@example.com` - Unsubscribe user
+- Welcome emails are sent automatically upon subscription
+
 ## Customer Flow
 
 1. Browse products on homepage or products page
@@ -194,6 +218,9 @@ Visit [http://localhost:3000](http://localhost:3000)
 - `GET /api/products/[id]` - Get single product
 - `POST /api/quotes` - Submit quote request
 - `GET /api/categories` - List categories
+- `POST /api/newsletter` - Subscribe to newsletter
+- `DELETE /api/newsletter?email=user@example.com` - Unsubscribe from newsletter
+- `GET /api/newsletter` - Get all subscribers (should be protected in production)
 
 ### Protected Routes (Admin Only)
 - `POST /api/products` - Create product
@@ -276,6 +303,13 @@ npx prisma generate
 - Regenerate NEXTAUTH_SECRET
 - Clear browser cookies
 - Check admin credentials
+
+### Email Not Sending
+- Verify RESEND_API_KEY is correct
+- Check EMAIL_FROM domain is verified in Resend (for production)
+- In development, emails only send to verified email addresses
+- Check Resend dashboard logs for delivery status
+- Ensure newsletter subscription doesn't fail silently (check console logs)
 
 ## Support
 
