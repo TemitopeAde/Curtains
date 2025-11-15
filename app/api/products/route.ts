@@ -57,7 +57,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const { name, description, price, images, categoryId, featured } = body;
+    const { name, description, price, promoPrice, images, categoryId, featured } = body;
 
     // Generate slug from name
     const slug = name
@@ -71,6 +71,7 @@ export async function POST(request: NextRequest) {
         slug,
         description,
         price: parseFloat(price),
+        promoPrice: promoPrice ? parseFloat(promoPrice) : null,
         images,
         categoryId,
         featured: featured || false,

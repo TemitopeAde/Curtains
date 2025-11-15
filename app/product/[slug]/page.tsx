@@ -46,6 +46,9 @@ export default function ProductDetailPage() {
     }
   };
 
+  const currentPrice = product?.promoPrice || product?.price;
+  const hasPromo = product?.promoPrice && product.promoPrice < product.price;
+
   const addToCart = () => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
     const existingItem = cartItems.find((item: any) => item.productId === product.id);
@@ -63,7 +66,7 @@ export default function ProductDetailPage() {
       cartItems.push({
         productId: product.id,
         name: product.name,
-        price: product.price,
+        price: currentPrice,
         image: product.images[0],
         category: product.category.name,
         quantity: 1,
@@ -209,9 +212,25 @@ export default function ProductDetailPage() {
             )}
 
             <div className="mb-6">
-              <p className="font-[family-name:var(--font-montserrat)] text-4xl font-bold text-gray-900">
-                ${product.price.toFixed(2)}
-              </p>
+              {hasPromo ? (
+                <div className="flex items-center gap-4">
+                  <p className="font-[family-name:var(--font-montserrat)] text-4xl font-bold text-red-600">
+                    ${currentPrice.toFixed(2)}
+                  </p>
+                  <div className="flex flex-col">
+                    <p className="text-xl text-gray-500 line-through">
+                      ${product.price.toFixed(2)}
+                    </p>
+                    <span className="bg-red-100 text-red-700 text-xs font-semibold px-2 py-1 rounded">
+                      Save ${(product.price - currentPrice).toFixed(2)}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <p className="font-[family-name:var(--font-montserrat)] text-4xl font-bold text-gray-900">
+                  ${currentPrice.toFixed(2)}
+                </p>
+              )}
             </div>
 
             <p className="text-gray-600 mb-8 leading-relaxed">{product.description}</p>
@@ -227,13 +246,22 @@ export default function ProductDetailPage() {
               <WhatsAppButton product={product} />
             </div>
 
-            {product.featured && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-                <p className="text-sm text-amber-800 font-medium">
-                  ⭐ Featured Product - Premium Quality Guaranteed
-                </p>
-              </div>
-            )}
+            <div className="space-y-3">
+              {product.featured && (
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+                  <p className="text-sm text-amber-800 font-medium">
+                    ⭐ Featured Product - Premium Quality Guaranteed
+                  </p>
+                </div>
+              )}
+              {hasPromo && (
+                <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                  <p className="text-sm text-red-800 font-medium">
+                    🔥 Limited Time Offer - Special Discount Applied!
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>
