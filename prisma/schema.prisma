@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  slug     String    @unique
+  products Product[]
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String   @db.Text
+  price       Float
+  images      String[] // Array of Cloudinary URLs
+  featured    Boolean  @default(false)
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId  String
+  rating      Float?
+  reviews     Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  quoteItems  QuoteItem[]
+}
+
+model Quote {
+  id          String      @id @default(cuid())
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  customerAddress String?   @db.Text
+  status      String      @default("pending") // pending, contacted, completed
+  items       QuoteItem[]
+  totalAmount Float?
+  notes       String?     @db.Text
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model QuoteItem {
+  id          String   @id @default(cuid())
+  quote       Quote    @relation(fields: [quoteId], references: [id], onDelete: Cascade)
+  quoteId     String
+  product     Product  @relation(fields: [productId], references: [id])
+  productId   String
+  quantity    Int      @default(1)
+
+  // Bedding-specific fields (optional)
+  bedSize     String?  // "4x6", "6x6", "7x7"
+  design      String?  // "plain", "patterned"
+  setType     String?  // "bedspread", "duvet"
+
+  specialNotes String? @db.Text
+  createdAt   DateTime @default(now())
+}
