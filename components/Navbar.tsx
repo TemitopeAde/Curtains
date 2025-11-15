@@ -25,7 +25,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <Link href="/" className="font-[family-name:var(--font-playfair)] text-2xl font-bold text-gray-900">
-            LuxeHome
+            JD Beddings & Interiors
           </Link>
 
           {/* Desktop Menu */}
@@ -36,10 +36,10 @@ export default function Navbar() {
             <Link href="/products" className="text-gray-700 hover:text-gray-900 transition-colors">
               Products
             </Link>
-            <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
+            <Link href="/about" className="text-gray-700 hover:text-gray-900 transition-colors">
               About
             </Link>
-            <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
+            <Link href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors">
               Contact
             </Link>
             <Link href="/cart" className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
@@ -74,10 +74,10 @@ export default function Navbar() {
               <Link href="/cart" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 Cart {cartCount > 0 && `(${cartCount})`}
               </Link>
-              <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
+              <Link href="/about" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 About
               </Link>
-              <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
+              <Link href="/contact" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 Contact
               </Link>
             </div>
