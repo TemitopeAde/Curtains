@@ -37,7 +37,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#1a1a1a',
-    borderBottom: '2 solid #d97706',
+    borderBottomWidth: 2,
+    borderBottomColor: '#d97706',
+    borderBottomStyle: 'solid',
     paddingBottom: 5,
   },
   row: {
@@ -61,12 +63,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#f3f4f6',
     padding: 8,
     fontWeight: 'bold',
-    borderBottom: '1 solid #d1d5db',
+    borderBottomWidth: 1,
+    borderBottomColor: '#d1d5db',
+    borderBottomStyle: 'solid',
   },
   tableRow: {
     flexDirection: 'row',
     padding: 8,
-    borderBottom: '1 solid #e5e7eb',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+    borderBottomStyle: 'solid',
   },
   tableCol1: {
     width: '40%',
@@ -92,7 +98,9 @@ const styles = StyleSheet.create({
   totalSection: {
     marginTop: 20,
     paddingTop: 15,
-    borderTop: '2 solid #1a1a1a',
+    borderTopWidth: 2,
+    borderTopColor: '#1a1a1a',
+    borderTopStyle: 'solid',
   },
   totalRow: {
     flexDirection: 'row',
@@ -115,7 +123,9 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginTop: 10,
     paddingTop: 10,
-    borderTop: '1 solid #d1d5db',
+    borderTopWidth: 1,
+    borderTopColor: '#d1d5db',
+    borderTopStyle: 'solid',
   },
   grandTotalLabel: {
     width: '30%',
@@ -154,7 +164,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#666',
     fontSize: 9,
-    borderTop: '1 solid #e5e7eb',
+    borderTopWidth: 1,
+    borderTopColor: '#e5e7eb',
+    borderTopStyle: 'solid',
     paddingTop: 10,
   },
 });
