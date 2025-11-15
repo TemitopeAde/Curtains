@@ -15,15 +15,15 @@ interface ProductCardProps {
 export default function ProductCard({ product, onQuickView }: ProductCardProps) {
   const router = useRouter();
 
-  const addToQuote = (e: React.MouseEvent) => {
+  const addToCart = (e: React.MouseEvent) => {
     e.preventDefault();
-    const quoteItems = JSON.parse(localStorage.getItem("quoteItems") || "[]");
-    const existingItem = quoteItems.find((item: any) => item.productId === product.id);
+    const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    const existingItem = cartItems.find((item: any) => item.productId === product.id);
 
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
-      quoteItems.push({
+      cartItems.push({
         productId: product.id,
         name: product.name,
         price: product.price,
@@ -33,8 +33,9 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
       });
     }
 
-    localStorage.setItem("quoteItems", JSON.stringify(quoteItems));
-    router.push("/quote");
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    window.dispatchEvent(new Event("storage"));
+    router.push("/cart");
   };
 
   return (
@@ -101,11 +102,11 @@ export default function ProductCard({ product, onQuickView }: ProductCardProps) 
               ${product.price.toFixed(2)}
             </p>
             <button
-              onClick={addToQuote}
+              onClick={addToCart}
               className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors duration-200 text-sm font-medium flex items-center gap-1"
             >
               <ShoppingCart className="w-4 h-4" />
-              Add to Quote
+              Add to Cart
             </button>
           </div>
         </div>

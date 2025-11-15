@@ -1,23 +1,23 @@
 "use client";
 
 import Link from "next/link";
-import { FileText, Menu } from "lucide-react";
+import { ShoppingCart, Menu } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [quoteCount, setQuoteCount] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
 
   useEffect(() => {
-    const updateQuoteCount = () => {
-      const items = JSON.parse(localStorage.getItem("quoteItems") || "[]");
-      setQuoteCount(items.length);
+    const updateCartCount = () => {
+      const items = JSON.parse(localStorage.getItem("cartItems") || "[]");
+      setCartCount(items.length);
     };
 
-    updateQuoteCount();
-    window.addEventListener("storage", updateQuoteCount);
+    updateCartCount();
+    window.addEventListener("storage", updateCartCount);
 
-    return () => window.removeEventListener("storage", updateQuoteCount);
+    return () => window.removeEventListener("storage", updateCartCount);
   }, []);
 
   return (
@@ -42,11 +42,11 @@ export default function Navbar() {
             <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors">
               Contact
             </Link>
-            <Link href="/quote" className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
-              <FileText className="w-6 h-6" />
-              {quoteCount > 0 && (
+            <Link href="/cart" className="relative p-2 hover:bg-gray-100 rounded-full transition-colors">
+              <ShoppingCart className="w-6 h-6" />
+              {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-gray-900 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {quoteCount}
+                  {cartCount}
                 </span>
               )}
             </Link>
@@ -71,8 +71,8 @@ export default function Navbar() {
               <Link href="/products" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 Products
               </Link>
-              <Link href="/quote" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
-                Quote Request {quoteCount > 0 && `(${quoteCount})`}
+              <Link href="/cart" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
+                Cart {cartCount > 0 && `(${cartCount})`}
               </Link>
               <Link href="#" className="text-gray-700 hover:text-gray-900 transition-colors py-2">
                 About

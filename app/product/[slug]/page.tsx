@@ -45,14 +45,14 @@ export default function ProductDetailPage() {
     }
   };
 
-  const addToQuote = () => {
-    const quoteItems = JSON.parse(localStorage.getItem("quoteItems") || "[]");
-    const existingItem = quoteItems.find((item: any) => item.productId === product.id);
+  const addToCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+    const existingItem = cartItems.find((item: any) => item.productId === product.id);
 
     if (existingItem) {
       existingItem.quantity += 1;
     } else {
-      quoteItems.push({
+      cartItems.push({
         productId: product.id,
         name: product.name,
         price: product.price,
@@ -62,8 +62,9 @@ export default function ProductDetailPage() {
       });
     }
 
-    localStorage.setItem("quoteItems", JSON.stringify(quoteItems));
-    router.push("/quote");
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    window.dispatchEvent(new Event("storage"));
+    router.push("/cart");
   };
 
   if (loading) {
@@ -203,11 +204,11 @@ export default function ProductDetailPage() {
 
             <div className="space-y-3 mb-8">
               <button
-                onClick={addToQuote}
+                onClick={addToCart}
                 className="w-full bg-gray-900 text-white py-4 rounded-lg hover:bg-gray-800 transition-colors font-medium flex items-center justify-center gap-2"
               >
                 <ShoppingCart className="w-5 h-5" />
-                Add to Quote Request
+                Add to Cart
               </button>
               <WhatsAppButton product={product} />
             </div>
