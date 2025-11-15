@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { MessageCircle, FileText } from "lucide-react";
 import Image from "next/image";
+import { toast } from "sonner";
 
 interface CartItem {
   productId: string;
@@ -29,7 +30,6 @@ export default function CheckoutPage() {
     notes: "",
   });
   const [submitting, setSubmitting] = useState(false);
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     const storedItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
@@ -80,14 +80,21 @@ export default function CheckoutPage() {
 
       localStorage.removeItem("cartItems");
       window.dispatchEvent(new Event("storage"));
-      setSuccess(true);
+
+      toast.success("Quote Request Submitted!", {
+        description: "We'll review your request and get back to you within 24 hours with a detailed quote.",
+        duration: 5000,
+      });
 
       setTimeout(() => {
         router.push("/");
-      }, 3000);
+      }, 2000);
     } catch (error) {
       console.error("Error submitting quote:", error);
-      alert("Failed to submit quote. Please try again.");
+      toast.error("Failed to submit quote", {
+        description: "Please check your information and try again.",
+        duration: 5000,
+      });
     } finally {
       setSubmitting(false);
     }
@@ -132,26 +139,6 @@ export default function CheckoutPage() {
   };
 
   const total = items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-
-  if (success) {
-    return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-        <div className="max-w-md w-full bg-white rounded-lg shadow-lg p-8 text-center">
-          <div className="text-green-500 text-6xl mb-4">✓</div>
-          <h2 className="text-2xl font-bold mb-2">Quote Request Submitted!</h2>
-          <p className="text-gray-600 mb-6">
-            We'll review your request and get back to you within 24 hours with a detailed quote.
-          </p>
-          <button
-            onClick={() => router.push("/")}
-            className="bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800"
-          >
-            Back to Home
-          </button>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen bg-gray-50">
